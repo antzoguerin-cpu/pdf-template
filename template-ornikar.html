@@ -431,6 +431,42 @@ object-position: 50% 70%;
 .page2 td {
   font-weight: 400;  /* normal */
 }
+     /* A4 */
+  @page { size: A4; margin: 18mm; }
+
+  /* Chaque page */
+  .page { page-break-after: always; }
+
+  /* Page 1: empêche que l'illustration pousse une page 2 */
+  .first-page{
+    height: calc(297mm - 36mm); /* A4 - (18mm haut + 18mm bas) */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .first-page .page-content{
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+  .first-page .page-illustration{
+    flex: 0 0 70mm;   /* ajuste 60–85mm selon ton rendu */
+    overflow: hidden;
+  }
+  .first-page .page-illustration img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Texte page 1: max 14px, peut descendre */
+  .first-page .page-content{
+    font-size: clamp(10px, 1.2vw, 14px);
+    line-height: 1.25;
+  }
+  .first-page h3 { margin: 10px 0 6px; }
+  .first-page ul { margin: 4px 0 10px; padding-left: 18px; }
+  .first-page li { margin: 2px 0; }
 
   </style>
 </head>
