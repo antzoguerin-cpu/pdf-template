@@ -443,18 +443,17 @@ tbody tr.beige td{
 /* Illustration fixée en bas */
 .page1 .bottom-illu{
   position: absolute;
-
-  /* 👇 on sort du padding */
-  left: -16mm;
-  right: -16mm;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ centre parfaitement */
 
   bottom: 8mm;
 
-  width: calc(100% + 32mm); /* 16mm + 16mm */
+  width: 210mm;                 /* ✅ largeur A4 exacte */
   height: 38mm !important;
   max-height: 38mm !important;
+
   object-fit: cover;
-  object-position: center 70%;
+  object-position: center 65%;  /* ajuste ciel/voiture */
   display: block;
 }
 .page.page1{ overflow: hidden !important; }
@@ -550,7 +549,7 @@ modalités d’adaptation possibles.</div>
     ========================================================= -->
     
   </section>
-
+<div class="page-break"></div>
   <!-- ===================== PAGE 2 ===================== -->
   <section class="page page2">
   <div class="header" style="margin-bottom:6mm;">
