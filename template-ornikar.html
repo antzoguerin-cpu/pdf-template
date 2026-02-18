@@ -429,11 +429,16 @@ tbody tr.beige td{
 .page1 .bottom-illu{
   position: absolute;
   left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 32mm;          /* même valeur que padding-bottom */
+  bottom: 10mm;              /* ← on REMONTE l’image */
+  width: 100% !important;
+  height: 32mm !important;   /* ← force la hauteur même en PDF */
+  max-height: 32mm !important;
   object-fit: cover;
   display: block;
+}
+.page1 .bottom-illu{
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 @media print{
