@@ -57,12 +57,14 @@ img {
     margin:0 !important;
     box-shadow:none;
 
-    /* ✅ UN SEUL saut de page */
+    /* ✅ on force EXACTEMENT 1 page */
+    width: 210mm !important;
+    height: 297mm !important;
+
+    /* ✅ un seul saut entre pages */
     break-after: page;
 
-    /* stabilité n8n */
-    height: auto !important;
-    min-height: 297mm;
+    /* sécurité */
     overflow: hidden;
   }
 
@@ -70,8 +72,6 @@ img {
     break-after: auto;
   }
 }
-
-
 
 :root{
   --font:"GT Standard";
