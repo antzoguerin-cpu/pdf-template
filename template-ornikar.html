@@ -459,7 +459,41 @@ tbody tr.beige td{
 
   </style>
 </head>
+<script>
+(function () {
+  // attend que le contenu soit rendu (important pour les PDF)
+  function fitPage1() {
+    const page = document.querySelector('.page1');
+    const content = document.querySelector('.page1-content');
+    if (!page || !content) return;
 
+    // On commence "gros"
+    let size = 13;        // px
+    const min = 9.5;      // taille mini
+    const step = 0.5;     // pas de réduction
+
+    // On applique la taille
+    content.style.fontSize = size + 'px';
+
+    // On réduit tant que ça déborde
+    // (scrollHeight > clientHeight => contenu trop grand)
+    while (content.scrollHeight > content.clientHeight && size > min) {
+      size -= step;
+      content.style.fontSize = size + 'px';
+    }
+  }
+
+  // Lance après chargement
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fitPage1);
+  } else {
+    fitPage1();
+  }
+
+  // Certains moteurs PDF chargent les images après -> 2e passe
+  window.addEventListener('load', fitPage1);
+})();
+</script>
 <body>
 
   <!-- ===================== PAGE 1 ===================== -->
