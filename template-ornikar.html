@@ -40,10 +40,6 @@ body{
 }
 
 
-.page2{
-  page-break-before: always;
-  break-before: page;
-}
 
 
 img {
@@ -423,6 +419,9 @@ tbody tr.beige td{
   height: 297mm;
   box-sizing: border-box;
   overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+
 
   /* Réserve exacte pour l’illustration */
   padding: 14mm 14mm 35mm 14mm;
@@ -460,6 +459,10 @@ tbody tr.beige td{
   .page1{
     margin: 0;
   }
+}
+  .page{
+  page-break-inside: avoid;
+  break-inside: avoid-page;
 }
 
   </style>
