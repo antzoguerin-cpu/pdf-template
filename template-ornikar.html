@@ -31,24 +31,8 @@ body{
 
   margin: 0; /* ✅ pas de marge par défaut */
 }
-/* Saut de page uniquement entre les pages */
-.page{
-  break-after: page;
-  page-break-after: always;
-}
-
-/* Pas de saut après la dernière page */
-.page:last-of-type{
-  break-after: auto;
-  page-break-after: auto;
-}
 
 
-@media screen{
-  .page{
-    margin: 10mm auto; /* ✅ uniquement écran */
-  }
-}
 
 
 
