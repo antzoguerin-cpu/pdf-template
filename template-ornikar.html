@@ -442,16 +442,14 @@ tbody tr.beige td{
 .page1 .bottom-illu{
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ centre parfaitement */
+  transform: translateX(-50%);
+  bottom: var(--illu-bottom);
 
-  bottom:var(--illu-bottom);
-
-  width: 210mm;                 /* ✅ largeur A4 exacte */
-  height: var(--illu-h) !important;
-  max-height: 38mm !important;
+  width: 210mm;
+  height: var(--illu-h);
 
   object-fit: cover;
-  object-position: center 65%;  /* ajuste ciel/voiture */
+  object-position: center 70%;
   display: block;
 }
 .page.page1{ overflow: hidden !important; }
