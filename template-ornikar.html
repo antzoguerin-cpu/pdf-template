@@ -46,15 +46,25 @@ img {
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
 @media print{
   @page{ size: A4; margin: 0; }
-  body{ background:#fff; margin:0; }
-  .page{ margin:0 !important; box-shadow:none; }
+  body{
+    background:#fff;
+    margin:0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 
-  /* Pagination (UNIQUEMENT pour le PDF) */
   .page{
+    margin:0 !important;
+    box-shadow:none;
+
+    /* pagination */
     break-after: page;
     page-break-after: always;
+
+    /* stabilité n8n */
     height: auto !important;
     min-height: 297mm;
+    overflow: hidden;
   }
 
   .page:last-of-type{
@@ -62,6 +72,7 @@ img {
     page-break-after: auto;
   }
 }
+
 
 :root{
   --font:"GT Standard";
@@ -434,36 +445,18 @@ tbody tr.beige td{
 .page1 .bottom-illu{
   position: absolute;
   left: 0;
-  bottom: 10mm;              /* ← on REMONTE l’image */
+  bottom: 10mm;
   width: 100% !important;
-  height: 32mm !important;   /* ← force la hauteur même en PDF */
+  height: 32mm !important;
   max-height: 32mm !important;
   object-fit: cover;
   object-position: center 70%;
   display: block;
-}
-.page1 .bottom-illu{
   page-break-inside: avoid;
   break-inside: avoid;
 }
 .page.page1{ overflow: hidden !important; }
 
-@media print{
-  @page{
-    size: A4;
-    margin: 0;
-  }
-
-  body{
-    margin: 0;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .page1{
-    margin: 0;
-  }
-}
 
   </style>
 </head>
