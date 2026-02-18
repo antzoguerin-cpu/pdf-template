@@ -73,7 +73,7 @@ img {
 :root{
   --illu-h: 45mm;
   --illu-bottom: 8mm;
-  --illu-safe: 10mm;   /* ✅ sécurité réaliste */
+  --illu-safe: 8mm;   /* ✅ sécurité réaliste */
 }
 
 
@@ -472,7 +472,10 @@ tbody tr.beige td{
 .page1 .bottom-spacer,
 .page1 .top-header,
 .page1 .section{ position: relative; z-index: 1; }
-
+.page1 .section{
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
   </style>
 </head>
 
