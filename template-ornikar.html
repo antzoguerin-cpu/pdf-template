@@ -31,6 +31,17 @@ body{
 
   margin: 0; /* ✅ pas de marge par défaut */
 }
+/* Saut de page uniquement entre les pages */
+.page{
+  break-after: page;
+  page-break-after: always;
+}
+
+/* Pas de saut après la dernière page */
+.page:last-of-type{
+  break-after: auto;
+  page-break-after: auto;
+}
 
 
 @media screen{
@@ -415,13 +426,8 @@ tbody tr.beige td{
    ========================= */
 .page1{
   position: relative;
-  width: 210mm;
-  height: 297mm;
   box-sizing: border-box;
   overflow: hidden;
-  page-break-after: always;
-  break-after: page;
-
 
   /* Réserve exacte pour l’illustration */
   padding: 14mm 14mm 35mm 14mm;
@@ -459,10 +465,6 @@ tbody tr.beige td{
   .page1{
     margin: 0;
   }
-}
-  .page{
-  page-break-inside: avoid;
-  break-inside: avoid-page;
 }
 
   </style>
