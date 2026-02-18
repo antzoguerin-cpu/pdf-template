@@ -72,7 +72,9 @@ img {
 }
 
 :root{
-  --font:"GT Standard";
+  --illu-h: 45mm;     /* hauteur de l'illustration */
+  --illu-bottom: 8mm; /* distance du bas */
+  --illu-safe: 6mm;   /* marge sécurité pour le texte */
 }
 
 
@@ -433,7 +435,7 @@ tbody tr.beige td{
   overflow: hidden;
 
   /* Réserve exacte pour l’illustration */
-  padding: 14mm 14mm 45mm 14mm;
+ padding: 14mm 14mm calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe)) 14mm;
 }
 
 /* Illustration fixée en bas */
@@ -442,10 +444,10 @@ tbody tr.beige td{
   left: 50%;
   transform: translateX(-50%);   /* ✅ centre parfaitement */
 
-  bottom: 8mm;
+  bottom:var(--illu-bottom);
 
   width: 210mm;                 /* ✅ largeur A4 exacte */
-  height: 38mm !important;
+  height: var(--illu-h) !important;
   max-height: 38mm !important;
 
   object-fit: cover;
