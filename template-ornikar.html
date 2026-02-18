@@ -435,22 +435,25 @@ tbody tr.beige td{
   overflow: hidden;
 
   /* Réserve exacte pour l’illustration */
-  padding: 14mm 14mm 35mm 14mm;
+  padding: 14mm 14mm 0mm 14mm;
 }
 
 /* Illustration fixée en bas */
 .page1 .bottom-illu{
   position: absolute;
-  left: 0;
-  bottom: 10mm;
-  width: 100% !important;
-  height: 32mm !important;
-  max-height: 32mm !important;
+
+  /* 👇 on sort du padding */
+  left: -16mm;
+  right: -16mm;
+
+  bottom: 0;
+
+  width: calc(100% + 32mm); /* 16mm + 16mm */
+  height: 32mm;
+
   object-fit: cover;
   object-position: center 70%;
   display: block;
-  page-break-inside: avoid;
-  break-inside: avoid;
 }
 .page.page1{ overflow: hidden !important; }
 
