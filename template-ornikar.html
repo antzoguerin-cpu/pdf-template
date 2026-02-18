@@ -48,6 +48,19 @@ img {
   @page{ size: A4; margin: 0; }
   body{ background:#fff; margin:0; }
   .page{ margin:0 !important; box-shadow:none; }
+
+  /* Pagination (UNIQUEMENT pour le PDF) */
+  .page{
+    break-after: page;
+    page-break-after: always;
+    height: auto !important;
+    min-height: 297mm;
+  }
+
+  .page:last-of-type{
+    break-after: auto;
+    page-break-after: auto;
+  }
 }
 
 :root{
