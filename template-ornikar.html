@@ -71,9 +71,9 @@ img {
 }
 
 :root{
-  --illu-h: 45mm;     /* hauteur de l'illustration */
-  --illu-bottom: 8mm; /* distance du bas */
-  --illu-safe: 40mm;   /* marge sécurité pour le texte */
+  --illu-h: 45mm;
+  --illu-bottom: 8mm;
+  --illu-safe: 10mm;   /* ✅ sécurité réaliste */
 }
 
 
@@ -433,11 +433,11 @@ tbody tr.beige td{
   box-sizing: border-box;
   overflow: hidden;
 
-  /* ✅ réserve pour l'illustration */
-  padding-top: 18mm;            /* même que .page */
+  /* garde les mêmes paddings que .page */
+  padding-top: 18mm;
   padding-left: 16mm;
   padding-right: 16mm;
-  padding-bottom: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe));
+  padding-bottom: 16mm;   /* ✅ redevient normal */
 }
 
 /* Illustration fixée en bas */
@@ -464,6 +464,14 @@ tbody tr.beige td{
 .page1 .bottom-spacer{
   height: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe));
 }
+.page-break{
+  break-before: page;
+  page-break-before: always;
+}
+.page1 .bottom-illu{ z-index: 0; }
+.page1 .bottom-spacer,
+.page1 .top-header,
+.page1 .section{ position: relative; z-index: 1; }
 
   </style>
 </head>
