@@ -67,6 +67,8 @@ img {
   .page2{
   break-before: page;
   page-break-before: always; /* fallback */
+    height: auto !important;
+  overflow: visible !important;
 }
 
 }
@@ -435,7 +437,7 @@ tbody tr.beige td{
   overflow: hidden;
 
   /* Réserve exacte pour l’illustration */
-  padding: 14mm 14mm 55mm 14mm;
+  padding: 14mm 14mm 45mm 14mm;
 }
 
 /* Illustration fixée en bas */
@@ -446,11 +448,11 @@ tbody tr.beige td{
   left: -16mm;
   right: -16mm;
 
-  bottom: 8;
+  bottom: 8mm;
 
   width: calc(100% + 32mm); /* 16mm + 16mm */
-  height: 45mm !important;
-  max-height: 45mm !important;
+  height: 38mm !important;
+  max-height: 38mm !important;
   object-fit: cover;
   object-position: center 70%;
   display: block;
