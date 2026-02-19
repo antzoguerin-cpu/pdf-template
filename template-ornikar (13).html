@@ -81,19 +81,19 @@ body{
   }
 
   .page1 .bottom-illu{
-    position: absolute !important;
-    left: -16mm !important;         /* ✅ étend l'image jusque dans la marge papier */
-    right: -16mm !important;        /* pour full largeur visuelle */
-    bottom: -18mm !important;       /* ✅ colle au bas réel malgré @page margin */
-    transform: none !important;
+  position: absolute !important;
+  left: -16mm !important;
+  right: -16mm !important;
+  bottom: -18mm !important;
+  transform: none !important;
 
-    height: 45mm !important;
-    width: auto !important;
+  width: calc(100% + 32mm) !important;  /* ✅ largeur claire */
+  height: 45mm !important;
 
-    object-fit: cover !important;
-    object-position: center 75% !important;
-    display: block !important;
-  }
+  object-fit: cover !important;
+  object-position: center 75% !important;
+  display: block !important;
+}
 
   /* PAGE 2+ : tableau multi-pages */
   .page2{
