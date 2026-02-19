@@ -504,26 +504,10 @@ tbody tr.beige td{
   box-sizing: border-box;
   overflow: hidden;
 
-  /* ✅ réserve pour l'illustration */
-  padding-top: 18mm;            /* même que .page */
-  padding-left: 16mm;
-  padding-right: 16mm;
-  padding-bottom: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe));
-}
+  
 
 /* Illustration fixée en bas */
-.page1 .bottom-illu{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
 
-  width: 100%;
-  height: 45mm;              /* hauteur visible */
-  object-fit: cover;         /* rogne automatiquement */
-  object-position: center 75%; /* ajuste le cadrage */
-  display: block;
-}
 .page.page1{ overflow: hidden !important; }
 /* Zone de contenu (tout sauf l'image) */
 .page1-content{
