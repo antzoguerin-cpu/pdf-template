@@ -82,16 +82,20 @@ body{
 
   .page1 .bottom-illu{
   position: absolute !important;
-  left: -16mm !important;
-  bottom: -18mm !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
 
-  width: 242mm !important;  /* 210mm + 16mm + 16mm */
+  width: 100% !important;
   height: 45mm !important;
 
   object-fit: cover !important;
-  object-position: center 75% !important;
+  object-position: center 90% !important; /* ajuste le cadrage (plus bas) */
   display: block !important;
+
+  max-width: none !important;
 }
+
 
 
   /* PAGE 2+ : tableau multi-pages */
