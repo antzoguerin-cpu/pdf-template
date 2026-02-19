@@ -42,50 +42,73 @@ img {
   display: block;
 }
 
+/* ========= PRINT : pagination propre ========= */
 @media print {
 
-  /* IMPORTANT : marges PDF pour les pages "réelles" (celles créées quand ça déborde) */
   @page {
     size: A4;
-    margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
+    margin: 18mm 16mm 20mm 16mm;
   }
 
-  /* Si tu veux garder la page 1 identique à avant */
-  @page :first {
-    margin: 0;
-  }
-
-  body{
-    background:#fff;
-    margin:0;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  /* Tes pages (page1 / page2) ne doivent PAS re-forcer 210x297 en print,
-     sinon ça casse la pagination et les marges sur les pages suivantes */
+  /* 1) Chaque .page = une page imprimée */
   .page{
-    box-shadow:none !important;
-    overflow: visible !important;
-    height: auto !important;
+    box-shadow: none !important;
+    overflow: hidden !important;       /* important pour l'image absolute */
+    width: auto !important;
+    height: 297mm !important;          /* ✅ re-fixe A4 en print */
+    margin: 0 !important;
+    break-after: page;
+    page-break-after: always;
   }
 
-  /* Evite les lignes cassées et répète le header du tableau */
-  .page2 table thead { display: table-header-group; }
-  .page2 table tfoot { display: table-footer-group; }
-  .page2 table tr { break-inside: avoid; page-break-inside: avoid; }
-
-  /* Si le bloc "Organisation" ne rentre pas, il part entier à la page suivante */
-  .page2 .info-box{
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* Un peu d'air en bas pour éviter “collé bord feuille” */
+  /* 2) Forcer page2 à commencer sur une nouvelle page */
   .page2{
-    padding-bottom: 8mm !important;
+    break-before: page;
+    page-break-before: always;
   }
+
+  /* 3) Page 1 : réserve pour l’illustration */
+  .page1{
+    position: relative !important;
+    padding-top: 18mm !important;
+    padding-left: 16mm !important;
+    padding-right: 16mm !important;
+
+    /* réserve = hauteur image + marge bas + sécurité */
+    padding-bottom: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe)) !important;
+  }
+
+  .page1 .bottom-illu{
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: var(--illu-bottom) !important;
+
+    width: 100% !important;
+    height: var(--illu-h) !important;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 4) Page 2 : titre + tableau collés proprement en haut */
+  .page2{
+    height: 297mm !important;
+    overflow: visible !important; /* le tableau peut paginer ensuite */
+    padding-top: 18mm !important;
+    padding-left: 16mm !important;
+    padding-right: 16mm !important;
+    padding-bottom: 20mm !important;
+  }
+
+  /* Répéter header du tableau et éviter les coupures moches */
+  .page2 thead{ display: table-header-group; }
+  .page2 tfoot{ display: table-footer-group; }
+  .page2 tr{ break-inside: avoid; page-break-inside: avoid; }
+
+  /* si ton bloc "Organisation" doit rester groupé */
+  .page2 .info-box{ break-inside: avoid; page-break-inside: avoid; }
 }
+
 
 :root{
   --illu-h: 45mm;     /* hauteur de l'illustration */
