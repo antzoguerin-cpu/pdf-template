@@ -67,26 +67,44 @@ body{
     page-break-after:auto;
   }
 
-  /* ✅ Page 1 : garde ta marge haute (padding de .page) ET colle l'image en bas */
-  .page1{
-    position: relative !important;
-    overflow: hidden !important;
-    padding-bottom: 53mm !important; /* 45mm image + 8mm espace */
-  }
+  /* ================================
+   PAGE 1 FIXÉE PROPREMENT
+   ================================ */
 
-  .page1 .bottom-illu{
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    transform: none !important;
+.page1{
+  position: relative !important;
 
-    width: 100% !important;
-    height: 45mm !important;
-    object-fit: cover !important;
-    object-position: center 75% !important;
-    display: block !important;
-  }
+  height: 297mm !important;
+  max-height: 297mm !important;
+
+  box-sizing: border-box !important;
+
+  /* garde la marge haute normale */
+  padding-top: 18mm !important;
+  padding-left: 16mm !important;
+  padding-right: 16mm !important;
+
+  /* réserve espace pour image */
+  padding-bottom: 53mm !important; /* 45mm image + 8mm espace */
+
+  overflow: hidden !important;
+}
+
+/* Image vraiment collée au bas de la feuille */
+.page1 .bottom-illu{
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100% !important;
+  height: 45mm !important;
+
+  object-fit: cover !important;
+  object-position: center 75% !important;
+
+  display: block !important;
+}
 
   /* ✅ Tableau multi-pages */
   .page2{
