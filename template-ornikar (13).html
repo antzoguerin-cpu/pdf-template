@@ -70,32 +70,7 @@ body{
   }
 
   /* PAGE 1 : on remet des paddings internes raisonnables */
-  .page1{
-    position: relative !important;
-    overflow: hidden !important;
-
-    padding-top: 18mm !important;   /* ta marge interne voulue */
-    padding-left: 0 !important;     /* car @page a déjà 16mm */
-    padding-right: 0 !important;
-    padding-bottom: 53mm !important;/* 45mm image + 8mm espace */
-  }
-
-  .page1 .bottom-illu{
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-
-  width: 100% !important;
-  height: 45mm !important;
-
-  object-fit: cover !important;
-  object-position: center 90% !important; /* ajuste le cadrage (plus bas) */
-  display: block !important;
-
-  max-width: none !important;
-}
-
+  
 
 
   /* PAGE 2+ : tableau multi-pages */
@@ -116,10 +91,7 @@ body{
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
-  .page1 .bottom-illu{
-    all: unset !important;          /* ✅ reset total */
-    display: block !important;
-  }
+  
   .page1{
     position: relative !important;
     overflow: hidden !important;
