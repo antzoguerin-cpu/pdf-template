@@ -51,16 +51,28 @@ img {
 @media print{
   @page{
     size: A4;
-    margin:15mm; /* top right bottom left */
+    margin: 0; /* top right bottom left */
   }
-
+.page{ page-break-after: always; break-after: page; }
+.page:last-child{ page-break-after: auto; break-after: auto; }
+}
   body{
     background:#fff;
     margin:0;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-
+    .page1 .bottom-illu{
+    width: 100% !important;
+  }
+.page2{
+    padding-top: 18mm !important;     /* marge haute interne */
+    padding-bottom: 18mm !important;  /* marge basse interne */
+    height: 297mm !important;         /* on garde le calibrage A4 */
+    overflow: hidden !important;      /* empêche de dépasser */
+    box-sizing: border-box !important;
+  }
+}
   .page{
     padding: 10mm !important;   /* marge interne */
     height:auto !important;
