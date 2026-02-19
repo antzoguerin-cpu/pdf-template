@@ -42,60 +42,39 @@ body{
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
 @media print {
-
-  /* ================================
-     MARGES PAPIER
-     ================================ */
-
-  /* Pages 2+ avec vraies marges */
-  @page {
-    size: A4;
-    margin: 18mm 16mm 18mm 16mm; /* top right bottom left */
-  }
-
-  /* Page 1 sans marge (illustration pleine largeur) */
-  @page :first {
-    margin: 0;
-  }
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  @page :first { margin: 0; }
 
   body{
-    background: #fff !important;
-    margin: 0 !important;
+    background:#fff !important;
+    margin:0 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* ================================
-     STRUCTURE DES PAGES
-     ================================ */
-
-  /* ⚠️ NE PAS forcer 210mm / 297mm ici
-     sinon tu annules les marges @page */
   .page{
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    box-sizing: border-box !important;
+    width:auto !important;
+    height:auto !important;
+    margin:0 !important;
+    box-shadow:none !important;
+    box-sizing:border-box !important;
+    overflow: visible !important;
 
     break-after: page;
     page-break-after: always;
-
-    overflow: visible !important;
   }
-
   .page:last-child{
-    break-after: auto;
-    page-break-after: auto;
+    break-after:auto;
+    page-break-after:auto;
   }
 
-  /* ================================
-     PAGE 1 (illustration)
-     ================================ */
-/* garde ta marge de contenu sur page1 (padding de .page) */
-  .page1{ position: relative !important; }
+  /* ✅ Page 1 : garde ta marge haute (padding de .page) ET colle l'image en bas */
+  .page1{
+    position: relative !important;
+    overflow: hidden !important;
+    padding-bottom: 53mm !important; /* 45mm image + 8mm espace */
+  }
 
-  /* colle l'illustration tout en bas */
   .page1 .bottom-illu{
     position: absolute !important;
     left: 0 !important;
@@ -104,37 +83,25 @@ body{
     transform: none !important;
 
     width: 100% !important;
-    height: 45mm !important;         /* bande */
-    object-fit: cover !important;    /* rognage */
+    height: 45mm !important;
+    object-fit: cover !important;
     object-position: center 75% !important;
     display: block !important;
   }
 
-  /* réserve de la place sous le texte pour éviter que le texte passe sous l'image */
-  .page1{
-    padding-bottom: calc(45mm + 8mm) !important; /* image + petit espace */
+  /* ✅ Tableau multi-pages */
+  .page2{
+    padding: 0 !important;
+    overflow: visible !important;
   }
 
- 
-
-  
-.page1 .bottom-illu{
-    width: 100% !important;
-    max-width: 100% !important;
-
-    height: 45mm !important;      /* = ton --illu-h */
-    max-height: 45mm !important;
-
-    object-fit: cover !important;
-
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
+  .page2 table{
+    width:100% !important;
+    border-collapse: collapse !important;
   }
+  .page2 thead{ display: table-header-group; }
+}
 
-  img{
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
 
   /* ================================
      PAGES TABLEAU (2 et +)
