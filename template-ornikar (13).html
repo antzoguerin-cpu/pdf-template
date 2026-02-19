@@ -48,31 +48,42 @@ img {
 }
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
-@media print{
-  @page{ size:A4; margin:0; }
+@media print {
+  @page { size: A4; margin: 0; }
 
-  .page{ 
-    width:210mm !important;
-    height:297mm !important;
-    margin:0 !important;
-    box-shadow:none !important;
-    overflow:hidden !important;
-    box-sizing:border-box !important;
-    break-after: page;
+  .page{
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important; /* ok car on va gérer le contenu dedans */
     page-break-after: always;
+    break-after: page;
   }
   .page:last-child{
-    break-after:auto;
-    page-break-after:auto;
+    page-break-after: auto;
+    break-after: auto;
   }
 
+  /* ✅ marge INTERNE uniquement pour les pages tableau */
   .page2{
-    padding-top:18mm !important;
-    padding-bottom:18mm !important;
+    padding-top: 18mm !important;
+    padding-right: 16mm !important;
+    padding-left: 16mm !important;
+    padding-bottom: 18mm !important; /* <-- ta marge bas */
+  }
+  .page2 table{
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  .page1 .bottom-illu{
-    width:100% !important;
+  .page2 thead{ display: table-header-group; } /* répète l'entête */
+  .page2 tfoot{ display: table-footer-group; }
+
+  .page2 tr, .page2 td, .page2 th{
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
 
