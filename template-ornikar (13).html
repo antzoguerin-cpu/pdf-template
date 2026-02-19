@@ -11,17 +11,12 @@ html, body {
   padding: 0;
 }
 
-@page {
-  size: A4;
-  margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
-}
-@media print{
-  @page{
-    size: A4;
-    margin: 18mm 16mm 20mm 16mm;
-  }
-}
+@page { size: A4; margin: 0; }
 
+body{
+  background:#eaeaea;
+  font-family: Arial, sans-serif;
+}
 
 /* "feuille A4" à l’écran */
 .page{
@@ -48,16 +43,14 @@ img {
 }
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
-@page {
-  size: A4;
-  margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
-}
 @media print{
-  @page{
-    size: A4;
-    margin: 18mm 16mm 20mm 16mm;
+  @page{ size: A4; margin: 0; }
+  body{
+    background:#fff;
+    margin:0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-}
 
   .page{
     margin:0 !important;
@@ -476,19 +469,7 @@ tbody tr.beige td{
 .page1 .bottom-spacer{
   height: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe));
 }
-.info-box{
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-.page2 table{
-  margin-bottom: 8mm;
-}
-.page2 tr, 
-.page2 td, 
-.page2 th {
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
+
   </style>
 </head>
 
