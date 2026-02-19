@@ -120,6 +120,25 @@ body{
     all: unset !important;          /* ✅ reset total */
     display: block !important;
   }
+  .page1{
+    position: relative !important;
+    overflow: hidden !important;
+    padding-bottom: 53mm !important;  /* réserve pour l'image */
+  }
+
+  .page1 .bottom-illu{
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    height: 45mm !important;
+
+    object-fit: cover !important;
+    object-position: center 90% !important;
+    max-width: none !important;
+  }
 }
 
 
