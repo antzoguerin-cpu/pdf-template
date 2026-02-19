@@ -49,26 +49,35 @@ img {
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
 @media print {
 
-  /* ✅ Marges réelles pour toutes les pages… */
+  /* ================================
+     MARGES PAPIER
+     ================================ */
+
+  /* Pages 2+ avec vraies marges */
   @page {
     size: A4;
     margin: 18mm 16mm 18mm 16mm; /* top right bottom left */
   }
 
-  /* ✅ …sauf la première page (illustration full-bleed) */
+  /* Page 1 sans marge (illustration pleine largeur) */
   @page :first {
     margin: 0;
   }
 
-  body {
+  body{
     background: #fff !important;
     margin: 0 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* ✅ On NE force PAS 210mm/297mm en print, sinon tu annules les marges @page */
-  .page {
+  /* ================================
+     STRUCTURE DES PAGES
+     ================================ */
+
+  /* ⚠️ NE PAS forcer 210mm / 297mm ici
+     sinon tu annules les marges @page */
+  .page{
     width: auto !important;
     height: auto !important;
     margin: 0 !important;
@@ -80,41 +89,82 @@ img {
 
     overflow: visible !important;
   }
-  .page:last-child {
+
+  .page:last-child{
     break-after: auto;
     page-break-after: auto;
   }
 
-  /* ✅ Page 1 : garde ton comportement “image cadrée” */
-  .page1 {
-    overflow: hidden !important;
-    padding: 0 !important; /* optionnel : évite un décalage si tu veux full-bleed */
+  /* ================================
+     PAGE 1 (illustration)
+     ================================ */
+
+  .page1{
+    position: relative !important;
+    height: 297mm !important;     /* verrouille à 1 page */
+    max-height: 297mm !important;
+    overflow: hidden !important;  /* rien ne déborde */
+    padding: 0 !important;        /* important si full-bleed */
   }
 
-  /* ✅ IMPORTANT : si tu utilises @page pour les marges, évite de rajouter du padding ici */
-  .page2 {
-    padding: 0 !important;
+  .page1 .bottom-illu{
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: 45mm !important;      /* = ton --illu-h */
+    max-height: 45mm !important;
+
+    object-fit: cover !important;
+
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  img{
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ================================
+     PAGES TABLEAU (2 et +)
+     ================================ */
+
+  .page2{
+    padding: 0 !important; /* les marges sont gérées par @page */
     overflow: visible !important;
   }
 
-  /* ✅ Table multi-pages propre */
-  .page2 table {
+  /* Tableau multi-pages propre */
+  .page2 table{
     width: 100% !important;
     border-collapse: collapse !important;
   }
-  .page2 thead { display: table-header-group; }
-  .page2 tfoot { display: table-footer-group; }
 
-  /* ✅ Autorise la pagination */
+  .page2 thead{
+    display: table-header-group;
+  }
+
+  .page2 tfoot{
+    display: table-footer-group;
+  }
+
+  /* Autorise la pagination naturelle */
   .page2 td,
-  .page2 th {
+  .page2 th{
     break-inside: auto;
     page-break-inside: auto;
   }
-  .page2 tr {
+
+  .page2 tr{
     break-inside: avoid;
     page-break-inside: avoid;
   }
+
 }
 
 
