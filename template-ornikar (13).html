@@ -11,12 +11,31 @@ html, body {
   padding: 0;
 }
 
-@page { size: A4; margin: 10; }
+@media print {
 
-body{
-  background:#eaeaea;
-  font-family: Arial, sans-serif;
+  /* Marge pour TOUTES les pages PDF (donc y compris les pages "3, 4, 5..." quand un tableau continue) */
+  @page {
+    margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
+  }
+
+  /* Exception : 1ère page (si tu veux la conserver comme aujourd’hui) */
+  @page :first {
+    margin: 0;
+  }
+
+  /* Empêche les blocs (organisation participants) d'être coupés */
+  .info-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Pour que l'en-tête de tableau se répète et éviter des lignes cassées */
+  table thead { display: table-header-group; }
+  table tfoot { display: table-footer-group; }
+  table tr { break-inside: avoid; page-break-inside: avoid; }
+
 }
+
 
 /* "feuille A4" à l’écran */
 .page{
