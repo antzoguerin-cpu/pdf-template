@@ -132,12 +132,25 @@ body{
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
-  .page1{
+  .page1 { font-size: 14px !important; }
+
+  /* on force les éléments qui ont déjà une taille définie */
+  .page1 .page1-content,
+  .page1 .kv .k,
+  .page1 .kv .v,
+  .page1 li,
+  .page1 .section div{
     font-size: 14px !important;
+    line-height: 1.25 !important;
   }
 
-  .page1 h3{
+  .page1 .section h3{
     font-size: 16px !important;
+    line-height: 1.2 !important;
+  }
+
+  .page1 .title{
+    font-size: 22px !important;
   }
 }
 
@@ -509,6 +522,7 @@ tbody tr.beige td{
   .page2{
   padding-top: 18mm!important;  /* ajuste si besoin */
 }
+
   </style>
 </head>
 
