@@ -492,8 +492,34 @@ tbody tr.beige td{
     box-sizing: border-box;
   }
 }
-  .page2 {
+  /* Page 2 */
+.page2{
   padding-top: 20mm !important;
+  padding-bottom: 18mm !important;
+}
+
+/* Pages générées automatiquement après débordement */
+.page2 table{
+  page-break-inside: auto;
+}
+
+.page2 tr{
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+/* Force une vraie marge sur les pages suivantes */
+@media print{
+
+  .page2{
+    padding-top: 20mm !important;
+    padding-bottom: 18mm !important;
+  }
+
+  .page2 table{
+    margin-bottom: 10mm !important;
+  }
+
 }
   </style>
 </head>
