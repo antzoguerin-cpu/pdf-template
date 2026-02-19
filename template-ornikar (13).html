@@ -57,7 +57,7 @@ img {
     margin: 0 !important;
     box-shadow: none !important;
     box-sizing: border-box !important;
-    overflow: hidden !important; /* ok car on va gérer le contenu dedans */
+    overflow: hidden !important; /* utile pour page1 + image */
     page-break-after: always;
     break-after: page;
   }
@@ -66,26 +66,26 @@ img {
     break-after: auto;
   }
 
-  /* ✅ marge INTERNE uniquement pour les pages tableau */
+  /* ✅ pages tableau : marges internes + pas de coupe */
   .page2{
     padding-top: 18mm !important;
     padding-right: 16mm !important;
     padding-left: 16mm !important;
-    padding-bottom: 18mm !important; /* <-- ta marge bas */
-  }
-  .page2 table{
-    width: 100%;
-    border-collapse: collapse;
+    padding-bottom: 18mm !important;
+    overflow: visible !important; /* IMPORTANT */
   }
 
-  .page2 thead{ display: table-header-group; } /* répète l'entête */
+  /* ✅ table multi-page propre */
+  .page2 thead{ display: table-header-group; }
   .page2 tfoot{ display: table-footer-group; }
 
-  .page2 tr, .page2 td, .page2 th{
+  /* ✅ on évite de couper une ligne, mais on autorise la coupe globale */
+  .page2 tr{
     break-inside: avoid;
     page-break-inside: avoid;
   }
 }
+
 
 
 :root{
