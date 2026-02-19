@@ -67,11 +67,6 @@ img {
   height: auto !important;
   overflow: visible !important;
 }
-  .page2{
-    padding-top: 6mm !important;
-    padding-bottom: 8mm !important;
-    box-sizing: border-box;
-  }
 
 }
 
@@ -488,6 +483,14 @@ tbody tr.beige td{
 .page2 th{
   break-inside: avoid;
   page-break-inside: avoid;
+}
+@media print{
+  /* PAGE 2 : forcer un peu d'air en haut et en bas même quand ça paginate */
+  .page2{
+    padding-top: 6mm !important;
+    padding-bottom: 8mm !important;
+    box-sizing: border-box;
+  }
 }
   </style>
 </head>
