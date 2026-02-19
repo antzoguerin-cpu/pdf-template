@@ -42,7 +42,7 @@ body{
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
 @media print {
-  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  @page { size: A4; margin: 18mm 16mm; } /* 18mm haut/bas, 16mm gauche/droite */
 
   body{
     background:#fff !important;
@@ -51,15 +51,23 @@ body{
     print-color-adjust: exact;
   }
 
-  /* Chaque .page = un bloc imprimable */
+  /* Hauteur réellement disponible dans la page (zone imprimable) */
+  :root{
+    --print-h: calc(297mm - 18mm - 18mm); /* = 261mm */
+  }
+
+  /* Chaque section .page vit dans la zone imprimable, donc on fixe à --print-h */
   .page{
     width: auto !important;
+    height: var(--print-h) !important;
+    min-height: var(--print-h) !important;
+    max-height: var(--print-h) !important;
+
     margin: 0 !important;
+    padding: 0 !important;
     box-shadow: none !important;
     box-sizing: border-box !important;
-
-    /* IMPORTANT : on ne remet pas de padding ici, @page gère la marge papier */
-    padding: 0 !important;
+    overflow: hidden !important;
 
     break-after: page;
     page-break-after: always;
@@ -70,23 +78,18 @@ body{
   }
 
   /* =========================
-     PAGE 1 : 1 page fixe + image collée en bas
+     PAGE 1 : contenu + image collée en bas
      ========================= */
   .page1{
     position: relative !important;
 
-    /* ✅ verrouille à 1 page (évite que l'image parte page 2) */
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
+    /* ✅ pas de padding-top ici :
+       la marge haute est déjà gérée par @page (18mm) */
+    padding-top: 0 !important;
 
+    /* ✅ réserve pour l'image */
+    padding-bottom: 53mm !important; /* 45mm + 8mm */
     overflow: hidden !important;
-
-    /* marge interne "de contenu" (en plus de @page) */
-    padding-top: 18mm !important;
-
-    /* ✅ réserve sous le texte pour ne jamais chevaucher l'image */
-    padding-bottom: 53mm !important; /* 45mm image + 8mm air */
   }
 
   .page1 .bottom-illu{
@@ -99,11 +102,10 @@ body{
     height: 45mm !important;
 
     object-fit: cover !important;
-    object-position: center 90% !important; /* ajuste le cadrage */
+    object-position: center 90% !important;
 
     display: block !important;
 
-    /* ✅ évite toute "coupe" ou pagination chelou */
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
@@ -112,7 +114,9 @@ body{
      PAGE 2+ : tableau multi-pages
      ========================= */
   .page2{
-    padding: 0 !important;
+    height: auto !important;         /* laisse le tableau paginer */
+    min-height: unset !important;
+    max-height: unset !important;
     overflow: visible !important;
   }
 
@@ -123,13 +127,13 @@ body{
   .page2 thead{ display: table-header-group; }
   .page2 tfoot{ display: table-footer-group; }
 
-  /* Ne coupe pas la box "Organisation des participants" :
-     si elle ne rentre pas, elle passe entière page suivante */
+  /* "Organisation des participants" jamais coupée */
   .page2 .info-box{
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
 }
+
 
 
 
