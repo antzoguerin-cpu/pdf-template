@@ -11,31 +11,12 @@ html, body {
   padding: 0;
 }
 
-@media print {
+@page { size: A4; margin: 0; }
 
-  /* Marge pour TOUTES les pages PDF (donc y compris les pages "3, 4, 5..." quand un tableau continue) */
-  @page {
-    margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
-  }
-
-  /* Exception : 1ère page (si tu veux la conserver comme aujourd’hui) */
-  @page :first {
-    margin: 0;
-  }
-
-  /* Empêche les blocs (organisation participants) d'être coupés */
-  .info-box {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* Pour que l'en-tête de tableau se répète et éviter des lignes cassées */
-  table thead { display: table-header-group; }
-  table tfoot { display: table-footer-group; }
-  table tr { break-inside: avoid; page-break-inside: avoid; }
-
+body{
+  background:#eaeaea;
+  font-family: Arial, sans-serif;
 }
-
 
 /* "feuille A4" à l’écran */
 .page{
@@ -488,69 +469,7 @@ tbody tr.beige td{
 .page1 .bottom-spacer{
   height: calc(var(--illu-h) + var(--illu-bottom) + var(--illu-safe));
 }
-  .page2 .info-box{
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-/* PAGE 2 : pagination propre du tableau */
-.page2 thead{
-  display: table-header-group;
-}
 
-.page2 tr,
-.page2 td,
-.page2 th{
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-@media print{
-  /* PAGE 2 : forcer un peu d'air en haut et en bas même quand ça paginate */
-  .page2{
-    padding-top: 6mm !important;
-    padding-bottom: 8mm !important;
-    box-sizing: border-box;
-  }
-}
-  /* Page 2 */
-.page2{
-  padding-top: 20mm !important;
-  padding-bottom: 18mm !important;
-}
-
-/* Pages générées automatiquement après débordement */
-.page2 table{
-  page-break-inside: auto;
-}
-
-.page2 tr{
-  page-break-inside: avoid;
-  page-break-after: auto;
-}
-
-/* Force une vraie marge sur les pages suivantes */
-@media print{
-
-  .page2{
-    padding-top: 20mm !important;
-    padding-bottom: 18mm !important;
-  }
-
-  .page2 table{
-    margin-bottom: 10mm !important;
-  }
-.page2 thead{
-  display: table-header-group!important;
-  }
-  .page2 table{
-    margin-top: 6mm !important;
-  }
-  .planning-wrap{
-    padding-top: 6mm;
-  }
-  .page2 tfoot { 
-    display: table-footer-group !important;
-}
-}
   </style>
 </head>
 
@@ -648,7 +567,7 @@ modalités d’adaptation possibles.</div>
 
     <div class="page2-title">Programme de la formation</div>
   </div>
-   <div class="planning-wrap">
+     
     <table>
       <thead>
         <tr>
@@ -664,7 +583,7 @@ modalités d’adaptation possibles.</div>
 
       </tbody>
     </table>
-</div>
+
     <div class="info-box">
       <h3>Organisation des participants</h3>
       <div><strong>{{grouping_summary}}</strong></div>
