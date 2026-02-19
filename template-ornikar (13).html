@@ -92,6 +92,28 @@ body{
   /* ================================
      PAGE 1 (illustration)
      ================================ */
+/* garde ta marge de contenu sur page1 (padding de .page) */
+  .page1{ position: relative !important; }
+
+  /* colle l'illustration tout en bas */
+  .page1 .bottom-illu{
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+
+    width: 100% !important;
+    height: 45mm !important;         /* bande */
+    object-fit: cover !important;    /* rognage */
+    object-position: center 75% !important;
+    display: block !important;
+  }
+
+  /* réserve de la place sous le texte pour éviter que le texte passe sous l'image */
+  .page1{
+    padding-bottom: calc(45mm + 8mm) !important; /* image + petit espace */
+  }
 
  
 
