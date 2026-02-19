@@ -71,7 +71,7 @@ img {
     padding-right: 16mm !important;
     padding-left: 16mm !important;
     padding-bottom: 18mm !important;
-    overflow: visible !important; /* IMPORTANT */
+    overflow: hidden !important; /* IMPORTANT */
   }
 
   /* ✅ table multi-page propre */
@@ -83,6 +83,16 @@ img {
     break-inside: avoid;
     page-break-inside: avoid;
   }
+  
+  /* ✅ zone utile = hauteur page - paddings */
+  .page2 .table-wrap{
+    height: calc(297mm - 18mm - 18mm) !important; /* hauteur totale - padding top/bottom */
+    overflow: hidden !important;
+  }
+
+  /* table continue correctement */
+  .page2 thead{ display: table-header-group; }
+}
 }
 
 
@@ -589,7 +599,7 @@ modalités d’adaptation possibles.</div>
 
     <div class="page2-title">Programme de la formation</div>
   </div>
-     
+     <div class="table-wrap">
     <table>
       <thead>
         <tr>
@@ -605,7 +615,7 @@ modalités d’adaptation possibles.</div>
 
       </tbody>
     </table>
-
+</div>
     <div class="info-box">
       <h3>Organisation des participants</h3>
       <div><strong>{{grouping_summary}}</strong></div>
