@@ -56,7 +56,6 @@ img {
     margin: 0 !important;
     box-shadow: none !important;
     box-sizing: border-box !important;
-    overflow: hidden !important; /* utile pour page1 + image */
     page-break-after: always;
     break-after: page;
   }
@@ -65,35 +64,27 @@ img {
     break-after: auto;
   }
 
-  /* ✅ pages tableau : marges internes + pas de coupe */
-  .page2{
-    padding-top: 18mm !important;
-    padding-right: 16mm !important;
-    padding-left: 16mm !important;
-    padding-bottom: 18mm !important;
-    overflow: visible !important; /* IMPORTANT */
+  /* ✅ Page 1: on coupe ce qui dépasse (illustration) */
+  .page1{
+    overflow: hidden !important;
   }
 
-  /* ✅ table multi-page propre */
+  /* ✅ Pages tableau: on laisse paginer */
+  .page2{
+    padding: 18mm 16mm 18mm 16mm !important; /* haut droite bas gauche */
+    overflow: visible !important;            /* IMPORTANT */
+  }
+
+  /* ✅ Table: entête répété, pagination propre */
+  .page2 table{ width: 100%; border-collapse: collapse; }
   .page2 thead{ display: table-header-group; }
   .page2 tfoot{ display: table-footer-group; }
 
-  /* ✅ on évite de couper une ligne, mais on autorise la coupe globale */
-  .page2 tr{
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  
-  /* ✅ zone utile = hauteur page - paddings */
-  .page2 .table-wrap{
-    height: calc(297mm - 18mm - 18mm) !important; /* hauteur totale - padding top/bottom */
-    overflow: visible !important;
-  }
+  /* ✅ Ne bloque pas la pagination */
+  .page2 td, .page2 th{ page-break-inside: auto; break-inside: auto; }
+  .page2 tr{ page-break-inside: avoid; break-inside: avoid; }
+}
 
-  /* table continue correctement */
-  .page2 thead{ display: table-header-group; }
-}
-}
 
 
 
@@ -599,7 +590,7 @@ modalités d’adaptation possibles.</div>
 
     <div class="page2-title">Programme de la formation</div>
   </div>
-     <div class="table-wrap">
+     
     <table>
       <thead>
         <tr>
@@ -615,7 +606,7 @@ modalités d’adaptation possibles.</div>
 
       </tbody>
     </table>
-</div>
+
     <div class="info-box">
       <h3>Organisation des participants</h3>
       <div><strong>{{grouping_summary}}</strong></div>
