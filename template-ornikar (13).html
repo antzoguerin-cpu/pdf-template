@@ -11,31 +11,12 @@ html, body {
   padding: 0;
 }
 
-@media print {
+@page { size: A4; margin: 10; }
 
-  /* Marge pour TOUTES les pages PDF (donc y compris les pages "3, 4, 5..." quand un tableau continue) */
-  @page {
-    margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
-  }
-
-  /* Exception : 1ère page (si tu veux la conserver comme aujourd’hui) */
-  @page :first {
-    margin: 0;
-  }
-
-  /* Empêche les blocs (organisation participants) d'être coupés */
-  .info-box {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* Pour que l'en-tête de tableau se répète et éviter des lignes cassées */
-  table thead { display: table-header-group; }
-  table tfoot { display: table-footer-group; }
-  table tr { break-inside: avoid; page-break-inside: avoid; }
-
+body{
+  background:#eaeaea;
+  font-family: Arial, sans-serif;
 }
-
 
 /* "feuille A4" à l’écran */
 .page{
@@ -62,14 +43,31 @@ img {
 }
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
-@media print{
-  @page{ size: A4; margin: 0; }
-  body{
-    background:#fff;
-    margin:0;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+@media print {
+
+  /* Marge pour TOUTES les pages PDF (donc y compris les pages "3, 4, 5..." quand un tableau continue) */
+  @page {
+    margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
   }
+
+  /* Exception : 1ère page (si tu veux la conserver comme aujourd’hui) */
+  @page :first {
+    margin: 0;
+  }
+
+  /* Empêche les blocs (organisation participants) d'être coupés */
+  .info-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Pour que l'en-tête de tableau se répète et éviter des lignes cassées */
+  table thead { display: table-header-group; }
+  table tfoot { display: table-footer-group; }
+  table tr { break-inside: avoid; page-break-inside: avoid; }
+
+}
+
 
   .page{
     margin:0 !important;
