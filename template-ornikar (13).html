@@ -42,49 +42,49 @@ img {
   display: block;
 }
 
-/* Si tu imprimes / exportes en PDF depuis un navigateur */
-@media print {
+media print {
 
-  /* Marge pour TOUTES les pages PDF (donc y compris les pages "3, 4, 5..." quand un tableau continue) */
+  /* IMPORTANT : marges PDF pour les pages "réelles" (celles créées quand ça déborde) */
   @page {
+    size: A4;
     margin: 18mm 16mm 20mm 16mm; /* top right bottom left */
   }
 
-  /* Exception : 1ère page (si tu veux la conserver comme aujourd’hui) */
+  /* Si tu veux garder la page 1 identique à avant */
   @page :first {
     margin: 0;
   }
 
-  /* Empêche les blocs (organisation participants) d'être coupés */
-  .info-box {
+  body{
+    background:#fff;
+    margin:0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Tes pages (page1 / page2) ne doivent PAS re-forcer 210x297 en print,
+     sinon ça casse la pagination et les marges sur les pages suivantes */
+  .page{
+    box-shadow:none !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Evite les lignes cassées et répète le header du tableau */
+  .page2 table thead { display: table-header-group; }
+  .page2 table tfoot { display: table-footer-group; }
+  .page2 table tr { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Si le bloc "Organisation" ne rentre pas, il part entier à la page suivante */
+  .page2 .info-box{
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  /* Pour que l'en-tête de tableau se répète et éviter des lignes cassées */
-  table thead { display: table-header-group; }
-  table tfoot { display: table-footer-group; }
-  table tr { break-inside: avoid; page-break-inside: avoid; }
-
-}
-
-
-  .page{
-    margin:0 !important;
-    box-shadow:none;
-
-    /* ✅ on force EXACTEMENT 1 page */
-    width: 210mm !important;
-    height: 297mm !important;
-
-    /* sécurité */
-    overflow: hidden;
-  }
+  /* Un peu d'air en bas pour éviter “collé bord feuille” */
   .page2{
-  height: auto !important;
-  overflow: visible !important;
-}
-
+    padding-bottom: 8mm !important;
+  }
 }
 
 :root{
