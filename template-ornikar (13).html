@@ -42,8 +42,9 @@ body{
 
 /* Si tu imprimes / exportes en PDF depuis un navigateur */
 @media print {
+  /* Marges imprimées */
   @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
-  
+
   body{
     background:#fff !important;
     margin:0 !important;
@@ -51,116 +52,86 @@ body{
     print-color-adjust: exact;
   }
 
+  /* 1 section .page = 1 page A4 */
   .page{
-    width:auto !important;
-    height:auto !important;
-    margin:0 !important;
-    box-shadow:none !important;
-    box-sizing:border-box !important;
-    overflow: visible !important;
+    width: auto !important;
+    height: 297mm !important;           /* ✅ fixe : ne varie plus avec le texte */
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    box-shadow: none !important;
 
-    break-after: page;
     page-break-after: always;
+    break-after: page;
+
+    overflow: hidden !important;        /* empêche tout débordement */
   }
   .page:last-child{
-    break-after:auto;
-    page-break-after:auto;
+    page-break-after: auto;
+    break-after: auto;
   }
 
-  /* ================================
-   PAGE 1 FIXÉE PROPREMENT
-   ================================ */
+  /* =========================
+     PAGE 1 : texte + bande image en bas
+     ========================= */
+  .page1{
+    position: relative !important;
 
-.page1{
-  position: relative !important;
+    /* garde tes paddings de contenu */
+    padding-top: 18mm !important;
+    padding-left: 16mm !important;
+    padding-right: 16mm !important;
 
-  height: 297mm !important;
-  max-height: 297mm !important;
+    /* réserve la place pour la bande */
+    padding-bottom: 53mm !important;    /* 45mm image + 8mm espace */
+  }
 
-  box-sizing: border-box !important;
+  .page1 .bottom-illu{
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
 
-  /* garde la marge haute normale */
-  padding-top: 18mm !important;
-  padding-left: 16mm !important;
-  padding-right: 16mm !important;
+    width: 100% !important;
+    height: 45mm !important;
 
-  /* réserve espace pour image */
-  padding-bottom: 53mm !important; /* 45mm image + 8mm espace */
+    object-fit: cover !important;       /* rogne */
+    object-position: center 75% !important;
+    display: block !important;
+  }
 
-  overflow: hidden !important;
-}
-
-/* Image vraiment collée au bas de la feuille */
-.page1 .bottom-illu{
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-
-  width: 100% !important;
-  height: 45mm !important;
-
-  object-fit: cover !important;
-  object-position: center 75% !important;
-
-  display: block !important;
-}
-
-  /* ✅ Tableau multi-pages */
+  /* =========================
+     PAGE 2+ : tableau multi-pages
+     ========================= */
   .page2{
-    padding: 0 !important;
-    overflow: visible !important;
+    padding: 0 !important;              /* marges gérées par @page */
+    overflow: visible !important;       /* permet au tableau de continuer page suivante */
   }
 
-  .page2 table{
-    width:100% !important;
-    border-collapse: collapse !important;
-  }
-  .page2 thead{ display: table-header-group; }
-
-
-  /* ================================
-     PAGES TABLEAU (2 et +)
-     ================================ */
-
-  .page2{
-    padding: 0 !important; /* les marges sont gérées par @page */
-    overflow: visible !important;
-  }
-
-  /* Tableau multi-pages propre */
   .page2 table{
     width: 100% !important;
     border-collapse: collapse !important;
   }
 
-  .page2 thead{
-    display: table-header-group;
-  }
+  /* répète l'entête du tableau sur chaque page */
+  .page2 thead{ display: table-header-group; }
+  .page2 tfoot{ display: table-footer-group; }
 
-  .page2 tfoot{
-    display: table-footer-group;
-  }
-
-  /* Autorise la pagination naturelle */
+  /* Autorise la pagination normale du tableau */
   .page2 td,
   .page2 th{
     break-inside: auto;
     page-break-inside: auto;
   }
 
-  .page2 tr{
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-    .page2 .info-box{
+  /* =========================
+     Box "Organisation des participants" : jamais coupée
+     ========================= */
+  .page2 .info-box{
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
-
 }
-
-
 
 
 
